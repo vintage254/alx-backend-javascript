@@ -1,11 +1,7 @@
-export default function updateStudentGradeByCity(students, city, newGrades) {
-  return students
-    .filter((student) => student.location.localeCompare(city) === 0)
-    .map((x) => {
-      const newGrade = newGrades.filter((y) => y.studentId === x.id);
-      const student = x;
-      if (newGrade.length === 1) student.grade = newGrade[0].grade;
-      else student.grade = 'N/A';
-      return student;
-    });
+export default function createInt8TypedArray(length, position, value) {
+  if (position >= length) throw Error('Position outside range');
+  const buffer = new ArrayBuffer(length);
+  const view = new Int8Array(buffer);
+  view.set([value], position);
+  return new DataView(buffer);
 }
